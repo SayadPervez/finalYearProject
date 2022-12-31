@@ -8,7 +8,7 @@ def myScatter(plt,pt,color,label,size=36):
     plt.scatter(pt[0],pt[1],c=color,s=size)
     plt.text(pt[0],pt[1],s=label,weight="bold")
 
-def calculateTime(sourcePoint,theta=0,debug=False):
+def calculateTime(sourcePoint,theta=0,debug=False,returnSourceAngle=False):
     ccr = circumcircleRadius = a / (3**0.5) # a / root 3
 
     polarA = (ccr,60+theta)
@@ -31,7 +31,8 @@ def calculateTime(sourcePoint,theta=0,debug=False):
 
     sourceAngle = degrees(atan2(sourcePoint[1],sourcePoint[0]))
     finalAngle = sourceAngle + theta
-    print(f"Source Angle : {360-abs(finalAngle) if finalAngle<0 else finalAngle} degrees")
+    finalAngle = 360-abs(finalAngle) if finalAngle<0 else finalAngle
+    #print(f"Source Angle : {finalAngle} degrees")
 
     if(debug):
         from matplotlib import pyplot as plt, patches
@@ -87,5 +88,7 @@ def calculateTime(sourcePoint,theta=0,debug=False):
             "point" : x[0],
             "time" : x[1]
         }
-
+    
+    if(returnSourceAngle):
+        return(returnObject,finalAngle)
     return(returnObject)

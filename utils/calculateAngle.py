@@ -31,9 +31,3 @@ def calculateAngle(jsonObject):
         finalAngle = -relativeAngle + additiveAngle
 
     return(360-abs(finalAngle) if finalAngle<0 else finalAngle)
-
-print(calculateAngle(
-    calculateTime((-0.3,-0.1),0
-    ,debug=True
-    )
-))
