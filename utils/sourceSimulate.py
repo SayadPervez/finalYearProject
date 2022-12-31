@@ -30,7 +30,7 @@ def calculateTime(sourcePoint,theta=0,debug=False):
     #print(tA,tB,tC)
 
     sourceAngle = degrees(atan(sourcePoint[1]/sourcePoint[0]))# wrt (0,0)
-    #print(sourceAngle)
+    print(f"Source Angle : {sourceAngle + theta} degrees")
 
     if(debug):
         from matplotlib import pyplot as plt, patches
