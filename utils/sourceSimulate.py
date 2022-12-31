@@ -1,5 +1,5 @@
 from konstants import equiTriangleSide as a, speedOfSound as v
-from math import cos,sin,degrees,radians,dist,atan,ceil
+from math import atan2, cos,sin,degrees,radians,dist,atan2,ceil
 
 def polar2cart(polarPoint):
     return(polarPoint[0]*cos(radians(polarPoint[1])),polarPoint[0]*sin(radians(polarPoint[1])))
@@ -29,8 +29,9 @@ def calculateTime(sourcePoint,theta=0,debug=False):
 
     #print(tA,tB,tC)
 
-    sourceAngle = degrees(atan(sourcePoint[1]/sourcePoint[0]))# wrt (0,0)
-    print(f"Source Angle : {sourceAngle + theta} degrees")
+    sourceAngle = degrees(atan2(sourcePoint[1],sourcePoint[0]))
+    finalAngle = sourceAngle + theta
+    print(f"Source Angle : {360-abs(finalAngle) if finalAngle<0 else finalAngle} degrees")
 
     if(debug):
         from matplotlib import pyplot as plt, patches
