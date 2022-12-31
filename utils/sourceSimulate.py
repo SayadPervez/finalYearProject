@@ -88,5 +88,3 @@ def calculateTime(sourcePoint,theta=0,debug=False):
         }
 
     return(returnObject)
-
-print(calculateTime((0.3,3**0.4/10),250))
