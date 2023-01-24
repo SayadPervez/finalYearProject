@@ -32,7 +32,7 @@ def calculateTime(sourcePoint,theta=0,debug=False,returnSourceAngle=False):
     sourceAngle = degrees(atan2(sourcePoint[1],sourcePoint[0]))
     finalAngle = sourceAngle + theta
     finalAngle = 360-abs(finalAngle) if finalAngle<0 else finalAngle
-    print(f"Source Angle : {finalAngle} degrees")
+    #print(f"Source Angle : {finalAngle} degrees")
 
     if(debug):
         from matplotlib import pyplot as plt, patches
