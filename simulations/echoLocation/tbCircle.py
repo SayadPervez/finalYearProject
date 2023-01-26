@@ -32,8 +32,8 @@ from math import cos,radians,sin,atan
 def polar2cart(polarPoint):
     return(round(polarPoint[0]*cos(radians(polarPoint[1])),15),round(polarPoint[0]*sin(radians(polarPoint[1])),15))
 
-for angle in range(0,3600):
-    x,y = polar2cart((0.01,angle/10))
+for angle in range(0,360):
+    x,y = polar2cart((1,angle))
     timeObject,theoreticalAngle = calculateTime((x/divisor,y/divisor),0,returnSourceAngle=True)
     observedAngle = calculateAngle(timeObject)
     print(theoreticalAngle)
@@ -55,22 +55,28 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import numpy as np
 
-sumli = [abs(t1[_]+t2[_]) for _ in range(len(t1))]
+#sumli = [abs(t1[_]+t2[_]) for _ in range(len(t1))]
 
-#plt.plot(list(range(0,3600)),t1,label="diff1")
-#plt.plot(list(range(0,3600)),t2,label="diff2")
+plt.plot(list(range(0,360)),t1,c="red",label="diff1")
+plt.plot(list(range(0,360)),t2,c="blue",label="diff2")
 #plt.plot(list(range(0,3600)),sumli,label="sum")
 #plt.plot(list(range(0,3600)),[abs(sin(radians(_/10)*3)*0.001) for _ in range(0,3600)],label="sine")
 
-plt.plot(list(range(0,3600)),i1,label="i1")
-plt.plot(list(range(0,3600)),i2,label="i2")
-plt.plot(list(range(0,3600)),i3,label="i3")
-plt.plot(list(range(0,3600)),sumx:=[(i1[_]+i2[_]+i3[_]-(3*min([i1[_],i2[_],i3[_]]))) for _ in range(len(i1))],label="sum")
+#plt.plot(list(range(0,3600)),i1,label="i1")
+#plt.plot(list(range(0,3600)),i2,label="i2")
+#plt.plot(list(range(0,3600)),i3,label="i3")
+#plt.plot(list(range(0,3600)),sumx:=[(i1[_]+i2[_]+i3[_]-(3*min([i1[_],i2[_],i3[_]]))) for _ in range(len(i1))],label="sum")
 
-print(sumx)
-print(sum(diffLi)/len(diffLi))
+#print(sumx)
+#print(sum(diffLi)/len(diffLi))
 
-print(((((3**0.5)/2)*(a)))/vSound)
+#print(((((3**0.5)/2)*(a)))/vSound)
+
+plt.plot(list(range(0,360)),[abs((sin(radians(_))*a)/vSound) for _ in range(0,360)],label="sine",c="black")
+plt.plot(list(range(0,360)),[abs((cos(radians(_+30))*a)/vSound) for _ in range(0,360)],label="cosine",c="black")
+
+plt.plot(list(range(0,360)),[abs((sin(radians(_+120))*a)/vSound) for _ in range(0,360)],label="sine",c="black")
+plt.plot(list(range(0,360)),[abs((cos(radians(_+150))*a)/vSound) for _ in range(0,360)],label="cosine",c="black")
 
 plt.legend()
 plt.show()
