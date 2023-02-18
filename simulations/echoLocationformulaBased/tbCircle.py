@@ -36,7 +36,7 @@ def polar2cart(polarPoint):
     return(round(polarPoint[0]*cos(radians(polarPoint[1])),15),round(polarPoint[0]*sin(radians(polarPoint[1])),15))
 
 for angle in range(0,360):
-    x,y = polar2cart((0.4,angle))
+    x,y = polar2cart((1,angle))
     timeObject,theoreticalAngle = calculateTime((x/divisor,y/divisor),0,returnSourceAngle=True)
     observedAngle = calculateAngle(timeObject)
     print(theoreticalAngle)
