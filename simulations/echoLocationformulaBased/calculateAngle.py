@@ -1,5 +1,5 @@
-from konstants import equiTriangleSide as l,speedOfSound as v,directionalWeights as dw
-from math import asin,degrees
+from konstants import equiTriangleSide as l,speedOfSound as v
+from math import asin,degrees,acos
 from sourceSimulate import calculateTime
 
 def calculateAngle(jsonObject):
@@ -13,22 +13,21 @@ def calculateAngle(jsonObject):
     '''
     deltaT = (jsonObject["Impact2"]["time"]-jsonObject["Impact1"]["time"])
     directionalConstant = jsonObject["Impact1"]["point"]+jsonObject["Impact2"]["point"]
-    relativeAngle = degrees(asin((v*deltaT)/l))
-    additiveAngle = dw[directionalConstant]
-    #print(relativeAngle,additiveAngle)
+    
+    theta = degrees(acos((deltaT*v)/l))
 
     if(directionalConstant=="AB"):
-        finalAngle = relativeAngle + additiveAngle
+        finalAngle = 90 - theta
     if(directionalConstant=="BA"):
-        finalAngle = additiveAngle - relativeAngle
+        finalAngle = 270 + theta
     if(directionalConstant=="AC"):
-        finalAngle = additiveAngle - relativeAngle
+        finalAngle = 30 + theta
     if(directionalConstant=="CA"):
-        finalAngle = relativeAngle + additiveAngle
+        finalAngle = 210 - theta
     if(directionalConstant=="BC"):
-        finalAngle = relativeAngle + additiveAngle
+        finalAngle = 330 - theta
     if(directionalConstant=="CB"):
-        finalAngle = -relativeAngle + additiveAngle
+        finalAngle = 150 + theta
 
     return(360-abs(finalAngle) if finalAngle<0 else finalAngle)
 

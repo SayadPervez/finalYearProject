@@ -1,23 +1,13 @@
-from konstants import equiTriangleSide as a, speedOfSound as v
+from konstants import equiTriangleSide as a, speedOfSound as v, getVertices, polar2cart
 from math import atan2, cos,sin,degrees,radians,dist,atan2,ceil
-
-def polar2cart(polarPoint):
-    return(polarPoint[0]*cos(radians(polarPoint[1])),polarPoint[0]*sin(radians(polarPoint[1])))
 
 def myScatter(plt,pt,color,label,size=36):
     plt.scatter(pt[0],pt[1],c=color,s=size)
     plt.text(pt[0],pt[1],s=label,weight="bold")
 
 def calculateTime(sourcePoint,theta=0,debug=False,returnSourceAngle=False):
-    ccr = circumcircleRadius = a / (3**0.5) # a / root 3
-
-    polarA = (ccr,60+theta)
-    polarB = (ccr,-60+theta)
-    polarC = (ccr,180+theta)
-
-    cartA = polar2cart(polarA)
-    cartB = polar2cart(polarB)
-    cartC = polar2cart(polarC)
+    
+    cartA,cartB,cartC = getVertices(theta)
 
     dA = dist(sourcePoint,cartA)
     dB = dist(sourcePoint,cartB)
