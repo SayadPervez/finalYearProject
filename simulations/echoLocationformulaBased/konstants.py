@@ -7,7 +7,7 @@ from math import cos,radians,degrees,sin
 def polar2cart(polarPoint):
     return(polarPoint[0]*cos(radians(polarPoint[1])),polarPoint[0]*sin(radians(polarPoint[1])))
 
-def getVertices(theta):
+def getVertices(theta=0):
     ccr = circumcircleRadius = equiTriangleSide / (3**0.5) # a / root 3
 
     polarA = (ccr,60+theta)

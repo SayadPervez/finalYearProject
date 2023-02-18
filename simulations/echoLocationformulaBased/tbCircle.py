@@ -1,5 +1,5 @@
 from calculateAngle import calculateAngle,calculateTime
-from konstants import speedOfSound as vSound,equiTriangleSide as a
+from konstants import speedOfSound as vSound,equiTriangleSide as a, getVertices
 
 loPoints = []
 
@@ -13,12 +13,15 @@ yLi = []
 divisor = 1
 
 # vertices : (0.028867513459481298, 0.05) (0.028867513459481298, -0.05) (-0.05773502691896258, 7.07050159149938e-18)
-xLi.append(0.028867513459481298)
-xLi.append(0.028867513459481298)
-xLi.append(-0.05773502691896258)
-yLi.append(0.05)
-yLi.append(-0.05)
-yLi.append(0)
+
+cartA,cartB,cartC = getVertices()
+
+xLi.append(cartA[0])
+xLi.append(cartB[0])
+xLi.append(cartC[0])
+yLi.append(cartA[1])
+yLi.append(cartB[1])
+yLi.append(cartC[1])
 diffLi.append(-10)
 diffLi.append(-10)
 diffLi.append(-10)
