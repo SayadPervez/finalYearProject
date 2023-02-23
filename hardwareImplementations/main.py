@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import hamming
 
+skipEvery = 500
+skipAmount = 5000
+
 def transform(data):
     window = hamming(len(data))
     data = data * window
@@ -15,7 +18,7 @@ def transform(data):
     plt.plot(frequency, spectrum)
     plt.xlabel('Frequency (Hz)')
     plt.ylabel('Amplitude')
-    plt.pause(0.01)
+    plt.pause(0.001)
     plt.clf()
 
 def readFileAsList():
@@ -29,8 +32,16 @@ def getSubArray(entireData,offset,size):
     return entireData[offset:offset+size]
 
 entireData = readFileAsList()
-for offset in range(len(entireData)-256):
+
+offset = 1
+while(offset<len(entireData)-256):
+
     subData = processData(getSubArray(entireData,offset,256))
+    print(offset)
+    if(offset%skipEvery==0):
+        offset+=skipAmount
     transform(subData)
+
+    offset+=1
 
 plt.show()
