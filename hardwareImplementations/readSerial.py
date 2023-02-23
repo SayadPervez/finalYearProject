@@ -11,4 +11,4 @@ except Exception as e:
     print(e)
 
 os.system(f"""sudo stty -F {port} {baudrate}""")
-os.system(f"""sudo stdbuf -o0 cat {port} | ts '[%Y-%m-%d %H:%M:%S]' > ./tty.log""")
+os.system(f"""sudo stdbuf -o0 cat {port} | ts '[%Y-%m-%d %H:%M:%.S]' > ./tty.log""")
