@@ -15,7 +15,8 @@ def transform(data):
     plt.plot(frequency, spectrum)
     plt.xlabel('Frequency (Hz)')
     plt.ylabel('Amplitude')
-    plt.show()
+    plt.pause(0.01)
+    plt.clf()
 
 def readFileAsList():
     with open("./tty.log","r") as f:
@@ -28,5 +29,8 @@ def getSubArray(entireData,offset,size):
     return entireData[offset:offset+size]
 
 entireData = readFileAsList()
-subData = processData(getSubArray(entireData,0,256))
-transform(subData)
+for offset in range(len(entireData)-256):
+    subData = processData(getSubArray(entireData,offset,256))
+    transform(subData)
+
+plt.show()
