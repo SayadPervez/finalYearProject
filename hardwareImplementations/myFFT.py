@@ -39,7 +39,7 @@ def _Compute(vReal,vImag,samples,power,dir):
         for j in range(0,l1):
             i = j
             for i in range(i,samples,l2):
-                i1 = i1+l1
+                i1 = i+l1
                 t1 = u1*vReal[i1] - u2*vImag[i1]
                 t2 = u1*vImag[i1] - u2*vReal[i1]
                 vReal[i1] = vReal[i] - t1
@@ -93,7 +93,7 @@ def MajorPeak(vD,samples,samplingFrequency):
     maxY = 0
     IndexOfMaxY = 0
 
-    for i in range(1,i<((samples>>1) + 1)):
+    for i in range(1,((samples>>1) + 1)):
         if((vD[i-1] < vD[i]) and (vD[i] > vD[i+1])):
             if(vD[i]>maxY):
                 maxY = vD[i]
