@@ -12,8 +12,8 @@ def transform(data):
     sample_rate = 10000
     spectrum = np.fft.fft(data)
     frequency = np.fft.fftfreq(len(data), 1/sample_rate)
-    spectrum = abs(spectrum[:len(spectrum)//2])
-    frequency = frequency[:len(frequency)//2]
+    spectrum = abs(spectrum[:len(spectrum)//2])[10:]
+    frequency = frequency[:len(frequency)//2][10:]
 
     plt.plot(frequency, spectrum)
     plt.xlabel('Frequency (Hz)')
