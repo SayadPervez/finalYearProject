@@ -46,6 +46,6 @@ while(offset<len(entireData)-256):
         offset+=skipAmount
     transform(subData,44100)
 
-    offset+=50
+    offset+=25
 
 plt.show()
