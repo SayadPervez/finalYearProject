@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import hamming
 from mySorter import *
+from math import degrees,acos
 
 skipEvery = 500
 skipAmount = 5000
@@ -61,3 +62,26 @@ while(offset<len(entireData)-256):
 plt.show()
 
 order,deltaT = infer(segregater(frequencyBins),binOffset)
+
+directionalConstant = "".join(order[:2])
+
+temperature = 28 # degree Celcius
+speedOfSound = 331.3 * (( 1 + (temperature/273) )**0.5)
+a = 75
+
+theta = degrees(acos((deltaT[0]*speedOfSound)/a))
+
+if(directionalConstant=="AB"):
+    finalAngle = 90 - theta
+if(directionalConstant=="BA"):
+    finalAngle = 270 + theta
+if(directionalConstant=="AC"):
+    finalAngle = 30 + theta
+if(directionalConstant=="CA"):
+    finalAngle = 210 - theta
+if(directionalConstant=="BC"):
+    finalAngle = 330 - theta
+if(directionalConstant=="CB"):
+    finalAngle = 150 + theta
+
+print("RESULT : ",360-abs(finalAngle) if finalAngle<0 else finalAngle,"degrees")
