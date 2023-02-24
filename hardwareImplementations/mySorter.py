@@ -19,15 +19,26 @@ def segregater(a0a): # array of arrays
 
     return(array0categories)
 
-def infer(arr):
+def infer(arr,bins,freq=44100):
     finalArr = []
+    tArr = []
 
     ind = 0
     while(len(finalArr)<3 and ind<len(arr)):
         categ = arr[ind]
         if(categ not in finalArr):
             finalArr.append(categ)
+            tArr.append(bins[ind])
         ind+=1
 
-    return(finalArr)
-        
+    t = 1/freq
+
+    deltaTs = []
+
+    try:
+        deltaTs.append((tArr[1] - tArr[0])*t)
+        deltaTs.append((tArr[2] - tArr[1])*t)
+    except Exception as e:
+        print(tArr,e)
+
+    return(finalArr,deltaTs)

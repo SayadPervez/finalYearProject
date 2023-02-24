@@ -7,6 +7,7 @@ skipEvery = 500
 skipAmount = 5000
 
 frequencyBins = []
+binOffset = []
 
 def transform(data,sample_rate = 10000,threshold=100):
     window = hamming(len(data))
@@ -22,6 +23,7 @@ def transform(data,sample_rate = 10000,threshold=100):
 
     if(len(sR)>0):
         frequencyBins.append(fR)
+        binOffset.append(offset)
     else:
         return
 
@@ -58,4 +60,4 @@ while(offset<len(entireData)-256):
 
 plt.show()
 
-print(infer(segregater(frequencyBins)))
+order,deltaT = infer(segregater(frequencyBins),binOffset)
