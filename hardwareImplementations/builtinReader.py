@@ -4,7 +4,7 @@ import sounddevice as sd
 
 # Define the sampling rate and duration of the recording
 fs = 44100  # Hz
-duration = 15  # seconds
+duration = 2  # seconds
 
 # Start the recording
 print("Recording...")

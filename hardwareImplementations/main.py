@@ -36,7 +36,7 @@ def getSubArray(entireData,offset,size):
 
 entireData = readFileAsList()
 
-offset = 230000
+offset = 1
 skipAmount = 1
 while(offset<len(entireData)-256):
 
