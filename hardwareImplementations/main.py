@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import hamming
 
+winners = []
+winnerf = []
+
 skipEvery = 500
 skipAmount = 5000
 
@@ -11,11 +14,14 @@ def transform(data,sample_rate = 10000,threshold=100):
 
     spectrum = np.fft.fft(data)
     frequency = np.fft.fftfreq(len(data), 1/sample_rate)
-    spectrum = abs(spectrum[:len(spectrum)//2])[10:-10]
-    frequency = frequency[:len(frequency)//2][10:-10]
+    spectrum = abs(spectrum[:len(spectrum)//2])[5:-10]
+    frequency = frequency[:len(frequency)//2][5:-10]
 
     sR = [_ for _ in spectrum if(_>threshold)]
     fR = [frequency[_] for _ in range(len(spectrum)) if(spectrum[_]>threshold)]
+
+    winners.append(sR)
+    winnerf.append(fR)
 
     plt.plot(frequency, spectrum)
     plt.scatter(fR, sR, color="r")
@@ -36,7 +42,7 @@ def getSubArray(entireData,offset,size):
 
 entireData = readFileAsList()
 
-offset = 230000
+offset = 0
 skipAmount = 1
 while(offset<len(entireData)-256):
 
@@ -46,6 +52,11 @@ while(offset<len(entireData)-256):
         offset+=skipAmount
     transform(subData,44100)
 
-    offset+=50
+    offset+=1000
+
+plt.show()
+
+for _ in range(len(winners)):
+    plt.scatter(winnerf[_],winners[_])
 
 plt.show()
