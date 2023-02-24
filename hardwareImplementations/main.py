@@ -5,10 +5,12 @@ from scipy.signal import hamming
 winners = []
 winnerf = []
 
-skipEvery = 500
+skipEvery = 50000
 skipAmount = 5000
 
-def transform(data,sample_rate = 10000,threshold=100):
+globalSkip = True
+
+def transform(data,sample_rate = 10000,threshold=100,skip = False):
     window = hamming(len(data))
     data = data * window
 
@@ -22,6 +24,9 @@ def transform(data,sample_rate = 10000,threshold=100):
 
     winners.append(sR)
     winnerf.append(fR)
+
+    if(skip):
+        return
 
     plt.plot(frequency, spectrum)
     plt.scatter(fR, sR, color="r")
@@ -42,21 +47,15 @@ def getSubArray(entireData,offset,size):
 
 entireData = readFileAsList()
 
-offset = 0
-skipAmount = 1
+offset = 1
 while(offset<len(entireData)-256):
 
     subData = processData(getSubArray(entireData,offset,256))
     print(offset)
     if(offset%skipEvery==0):
-        offset+=skipAmount
-    transform(subData,44100)
+        globalSkip = not globalSkip
+    transform(subData,44100,100,globalSkip)
 
-    offset+=1000
-
-plt.show()
-
-for _ in range(len(winners)):
-    plt.scatter(winnerf[_],winners[_])
+    offset+=1
 
 plt.show()
