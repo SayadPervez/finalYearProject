@@ -5,17 +5,20 @@ from scipy.signal import hamming
 skipEvery = 500
 skipAmount = 5000
 
-def transform(data):
+def transform(data,sample_rate = 10000,threshold=1000):
     window = hamming(len(data))
     data = data * window
 
-    sample_rate = 10000
     spectrum = np.fft.fft(data)
     frequency = np.fft.fftfreq(len(data), 1/sample_rate)
     spectrum = abs(spectrum[:len(spectrum)//2])[10:]
     frequency = frequency[:len(frequency)//2][10:]
 
+    sR = [_ for _ in spectrum if(_>threshold)]
+    fR = [frequency[_] for _ in range(len(spectrum)) if(spectrum[_]>threshold)]
+
     plt.plot(frequency, spectrum)
+    plt.plot(fR, sR, color="r")
     plt.xlabel('Frequency (Hz)')
     plt.ylabel('Amplitude')
     plt.pause(0.001)
@@ -34,13 +37,14 @@ def getSubArray(entireData,offset,size):
 entireData = readFileAsList()
 
 offset = 1
+skipAmount = 1
 while(offset<len(entireData)-256):
 
     subData = processData(getSubArray(entireData,offset,256))
     print(offset)
     if(offset%skipEvery==0):
         offset+=skipAmount
-    transform(subData)
+    transform(subData,40000)
 
     offset+=1
 
