@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import hamming
+from mySorter import *
 
 skipEvery = 500
 skipAmount = 5000
@@ -20,8 +21,7 @@ def transform(data,sample_rate = 10000,threshold=100):
     fR = [frequency[_] for _ in range(len(spectrum)) if(spectrum[_]>threshold)]
 
     if(len(sR)>0):
-        for f in fR:
-            frequencyBins.append(f)
+        frequencyBins.append(fR)
     else:
         return
 
@@ -58,5 +58,4 @@ while(offset<len(entireData)-256):
 
 plt.show()
 
-x = sorted(list(set(frequencyBins)))
-print(x)
+print(infer(segregater(frequencyBins)))
