@@ -3,7 +3,10 @@ import os
 os.system("ls /dev/tty*")
 
 port = "/dev/tty" + input("\n\nEnter PORT PATH ( /dev/tty* ) : ")
-baudrate = int(input("Enter baudrate : "))
+port = "/dev/ttyACM0" if port=="/dev/tty" else port
+
+baudrate = input("Enter baudrate : ")
+baudrate = 115200 if baudrate=="" else int(baudrate)
 
 try:
     os.remove("./tty.log")
