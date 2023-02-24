@@ -5,6 +5,8 @@ from scipy.signal import hamming
 skipEvery = 500
 skipAmount = 5000
 
+frequencyBins = []
+
 def transform(data,sample_rate = 10000,threshold=100):
     window = hamming(len(data))
     data = data * window
@@ -16,6 +18,12 @@ def transform(data,sample_rate = 10000,threshold=100):
 
     sR = [_ for _ in spectrum if(_>threshold)]
     fR = [frequency[_] for _ in range(len(spectrum)) if(spectrum[_]>threshold)]
+
+    if(len(sR)>0):
+        for f in fR:
+            frequencyBins.append(f)
+    else:
+        return
 
     plt.plot(frequency, spectrum)
     plt.scatter(fR, sR, color="r")
@@ -49,3 +57,6 @@ while(offset<len(entireData)-256):
     offset+=25
 
 plt.show()
+
+x = sorted(list(set(frequencyBins)))
+print(x)
