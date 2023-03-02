@@ -18,9 +18,6 @@ def drawBaseStructure():
 
     ax.set_aspect('equal', adjustable='box')
     ax.spines[['right', 'top']].set_visible(False)
-
-    # wave approaching at 30 degrees to the X axis
-    # (1,0) & (0,2.732)
     return fig,ax
 
 hitOrder="ABC"
