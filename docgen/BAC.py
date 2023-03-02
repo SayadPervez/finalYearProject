@@ -18,9 +18,6 @@ def drawBaseStructure():
 
     ax.set_aspect('equal', adjustable='box')
     ax.spines[['right', 'top']].set_visible(False)
-
-    # wave approaching at 30 degrees to the X axis
-    # (1,0) & (0,2.732)
     return fig,ax
 
 hitOrder="BAC"
@@ -40,7 +37,7 @@ fig,ax = drawBaseStructure()
 drawLine(ax,lineAngle,allVertices[1],"sound wave")
 drawLine(ax,waveAngle,allVertices[0],"line perpendicular to sound wave",color="k",linewidth=0.5)
 drawLine(ax,waveAngle,(0,0),"angle of sound wave",color="green",linewidth=0.5, linestyle="dashed")
-drawAngle(ax,(0,0),waveAngle,0,0.7)
+drawAngle(ax,(0,0),waveAngle,0,0.37)
 ax.set_title(f'Wave at {waveAngle} Degrees hitting {hitOrder[0]}')
 drawAngle(ax,allVertices[0],-90,waveAngle)
 plt.xlim(-0.5, 0.6)
@@ -54,11 +51,11 @@ fig,ax = drawBaseStructure()
 drawLine(ax,lineAngle,allVertices[0],"sound wave")
 drawLine(ax,waveAngle,allVertices[2],"line perpendicular to sound wave",color="k",linewidth=0.5)
 drawLine(ax,waveAngle,(0,0),"angle of sound wave",color="green",linewidth=0.5, linestyle="dashed")
-drawAngle(ax,(0,0),waveAngle,0,0.7)
+drawAngle(ax,(0,0),waveAngle,0,0.37)
 ax.set_title(f'Wave at {waveAngle} Degrees hitting {hitOrder[1]}')
-drawAngle(ax,allVertices[2],waveAngle,30,0.1)
+drawAngle(ax,allVertices[2],waveAngle,30)
 drawLine(ax,90,allVertices[2],"Reference Line parallel to Y axis","orange",0.5,"dashed")
-drawAngle(ax,allVertices[2],30,90,0.15)
+drawAngle(ax,allVertices[2],30,90,0.09)
 plt.xlim(-0.5, 0.6)
 plt.ylim(-0.5, 0.6)
 plt.xlabel("X Axis Distance in meters (m)")
