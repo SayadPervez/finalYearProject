@@ -1,5 +1,6 @@
 from math import acos,degrees,cos,sin,radians
 from konstants import speedOfSound,equiTriangleSide as side
+import matplotlib.patches as patches
 import numpy as np
 
 firstHitFormulae = {
@@ -59,3 +60,6 @@ def drawLine(ax, angle, point, color="red" ,linewidth=2 ,linestyle="solid"):
     # Add axis labels
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
+
+def drawAngle(ax,center,startAngle,endAngle,radius=0.1):
+    ax.add_patch(patches.Arc(center, radius, radius, angle=startAngle, theta2=endAngle-startAngle, linewidth=1, color="k"))
