@@ -19,7 +19,3 @@ def drawBaseStructure():
     ax.set_aspect('equal', adjustable='box')
     ax.spines[['right', 'top']].set_visible(False)
     return fig,ax
-
-fig,ax = drawBaseStructure()
-
-plt.show()
