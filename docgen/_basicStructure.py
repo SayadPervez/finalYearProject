@@ -11,8 +11,8 @@ def drawBaseStructure():
     plt.axhline(y=0, color='black', linestyle=':')
     plt.axvline(x=0, color='black', linestyle=':')
 
-    plt.plot(xLi+[xLi[0]],yLi+[yLi[0]],c="b",label="Equilateral Triangular Structure")
-    plt.scatter(xLi,yLi,c="k",label="Vertices of Triangle")
+    plt.plot(xLi+[xLi[0]],yLi+[yLi[0]],c="gray",linewidth=0.5)
+    plt.scatter(xLi,yLi,c="k",label="Vertices of Equilateral Triangle")
 
     plt.legend()
 
