@@ -61,5 +61,5 @@ def drawLine(ax, angle, point, label, color="red",linewidth=2 ,linestyle="solid"
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
 
-def drawAngle(ax,center,startAngle,endAngle,radius=0.1):
-    ax.add_patch(patches.Arc(center, radius, radius, angle=startAngle, theta2=endAngle-startAngle, linewidth=1, color="k"))
+def drawAngle(ax,center,startAngle,endAngle,radius=0.05):
+    ax.add_patch(patches.Arc(center, radius*2, radius*2, angle=startAngle, theta2=endAngle-startAngle, linewidth=1, color="k"))
