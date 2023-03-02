@@ -39,7 +39,7 @@ def getVertices(theta=0):
 
     return(cartA,cartB,cartC)
 
-def drawLine(ax, angle, point, color="red" ,linewidth=2 ,linestyle="solid"):
+def drawLine(ax, angle, point, label, color="red",linewidth=2 ,linestyle="solid"):
 
     theta = np.deg2rad(angle)
     m = np.tan(theta)
@@ -49,7 +49,7 @@ def drawLine(ax, angle, point, color="red" ,linewidth=2 ,linestyle="solid"):
     
     y = m * x + b
     
-    ax.plot(x, y, color=color, linewidth=linewidth, linestyle=linestyle)
+    ax.plot(x, y, color=color, linewidth=linewidth, linestyle=linestyle,label=label)
     
     #ax.scatter(point[0], point[1], color='blue', marker='o', s=100)
     
