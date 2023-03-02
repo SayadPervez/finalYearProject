@@ -61,5 +61,7 @@ def drawLine(ax, angle, point, color="red" ,linewidth=2 ,linestyle="solid"):
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
 
-def drawAngle(ax,center,startAngle,endAngle,radius=0.1):
+def drawAngle(ax,center,startAngle,endAngle,radius=0.1,label="θ"):
     ax.add_patch(patches.Arc(center, radius, radius, angle=startAngle, theta2=endAngle-startAngle, linewidth=1, color="k"))
+    label_pos = np.array([np.cos(np.deg2rad(endAngle/2)), np.sin(np.deg2rad(endAngle/2))]) * 0.1 * radius
+    ax.text(label_pos[0]+center[0], label_pos[1]+center[1], f'{abs(startAngle-endAngle) if(label=="") else label}°', ha='left', va='center')
