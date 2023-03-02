@@ -1,4 +1,4 @@
-from math import acos,degrees
+from math import acos,degrees,cos,sin,radians
 from konstants import speedOfSound,equiTriangleSide as side
 
 firstHitFormulae = {
@@ -20,3 +20,19 @@ secondHitFormulae = {
 }
 
 getTheta = lambda deltaT : degrees(acos((speedOfSound*deltaT)/side))
+
+def polar2cart(polarPoint):
+    return(polarPoint[0]*cos(radians(polarPoint[1])),polarPoint[0]*sin(radians(polarPoint[1])))
+
+def getVertices(theta=0):
+    ccr = circumcircleRadius = side / (3**0.5) # a / root 3
+
+    polarA = (ccr,60+theta)
+    polarB = (ccr,-60+theta)
+    polarC = (ccr,180+theta)
+
+    cartA = polar2cart(polarA)
+    cartB = polar2cart(polarB)
+    cartC = polar2cart(polarC)
+
+    return(cartA,cartB,cartC)
