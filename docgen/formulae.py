@@ -1,5 +1,6 @@
 from math import acos,degrees,cos,sin,radians
 from konstants import speedOfSound,equiTriangleSide as side
+import numpy as np
 
 firstHitFormulae = {
     "AB" : lambda theta:90-theta,
@@ -36,3 +37,25 @@ def getVertices(theta=0):
     cartC = polar2cart(polarC)
 
     return(cartA,cartB,cartC)
+
+def drawLine(ax, angle, point, color="red" ,linewidth=2 ,linestyle="solid"):
+
+    theta = np.deg2rad(angle)
+    m = np.tan(theta)
+    b = point[1] - m * point[0]
+    
+    x = np.linspace(-2, 2, 100)
+    
+    y = m * x + b
+    
+    ax.plot(x, y, color=color, linewidth=linewidth, linestyle=linestyle)
+    
+    #ax.scatter(point[0], point[1], color='blue', marker='o', s=100)
+    
+    # Set the x and y limits
+    ax.set_xlim([-2, 2])
+    ax.set_ylim([-2, 2])
+    
+    # Add axis labels
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
